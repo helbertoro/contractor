@@ -18,11 +18,12 @@ class CarnetController extends Controller
         $filename = time() . $image->GetClientOriginalName();
         $path = 'images/fotos_contratistas/' . $filename;
         \Image::make($image->GetRealPath())->widen(500)->save($path);
+        $data['picture'] = $filename;
 
         $carnet = new Carnet;
         $carnet->fill($data);
 
         $carnet->save();
-        return 'ok';
+        return \Redirect::to('contratistas.idcbis.org.co/carnet/gracias');
     }
 }
